@@ -3,29 +3,30 @@ package com.example.ravindar.alpha;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.EditText;
+import android.widget.TextView;
 
 
-public class HomeActivity extends ActionBarActivity {
-
-    protected static final String EXTRA_MESSAGE = "com.example.ravindar.alpha.msg";
+public class DisplayMessageActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
-    }
+
+        Intent intent = getIntent();
+        String inmsg = intent.getStringExtra(HomeActivity.EXTRA_MESSAGE);
+
+        TextView textView = new TextView(this);
+        textView.setTextSize(40);
+        textView.setText(inmsg);
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_home, menu);
-        return true;
+        if (inmsg.equals(null))
+            setContentView(R.layout.activity_display_message);
+        else
+            setContentView(textView);
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -40,15 +41,5 @@ public class HomeActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public void sendMessage(View view) {
-        EditText editText = (EditText) findViewById(R.id.editText);
-        String msg = editText.getText().toString();
-
-        Intent intent = new Intent(this, DisplayMessageActivity.class);
-        intent.putExtra(EXTRA_MESSAGE, msg);
-
-
     }
 }
