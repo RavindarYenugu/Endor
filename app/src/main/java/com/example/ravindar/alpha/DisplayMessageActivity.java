@@ -21,10 +21,11 @@ public class DisplayMessageActivity extends ActionBarActivity {
         textView.setText(inmsg);
 
 
-        if (inmsg.equals(null))
-            setContentView(R.layout.activity_display_message);
-        else
+        if (inmsg.equals(null)) setContentView(R.layout.activity_display_message);
+        else {
             setContentView(textView);
+
+        }
     }
 
 
