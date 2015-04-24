@@ -17,7 +17,7 @@ public class HomeActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.home);
 
     }
 
@@ -25,7 +25,7 @@ public class HomeActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.home_activity_actions, menu);
+        getMenuInflater().inflate(R.menu.home_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -37,7 +37,7 @@ public class HomeActivity extends ActionBarActivity {
         int id = item.getItemId();
         switch (id) {
             case R.id.action_search:
-                //display in short period of time
+                //display_msg in short period of time
                 Toast.makeText(getApplicationContext(), "You clicked search.",
                         Toast.LENGTH_SHORT).show();
                 return true;

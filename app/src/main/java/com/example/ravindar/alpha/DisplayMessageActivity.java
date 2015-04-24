@@ -12,22 +12,18 @@ public class DisplayMessageActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.display_msg);
 
         Intent intent = getIntent();
         String inmsg = intent.getStringExtra(HomeActivity.EXTRA_MESSAGE);
 
-        TextView textView = new TextView(this);
-        textView.setTextSize(40);
+
+        TextView textView = (TextView) findViewById(R.id.displayTextView);
+//        textView.setTextAppearance(getApplicationContext(), R.style.base_text);
+
         textView.setText(inmsg);
 
-
-        if (inmsg.equals(null)) setContentView(R.layout.activity_display_message);
-        else {
-            setContentView(textView);
-
-        }
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
