@@ -16,7 +16,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DisplayMessageActivity"
+            android:name=".MyFragActivity"
             android:label="@string/title_activity_display_message"
             android:parentActivityName=".HomeActivity">
             <meta-data

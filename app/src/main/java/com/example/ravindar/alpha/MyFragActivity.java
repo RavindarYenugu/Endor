@@ -1,29 +1,38 @@
 package com.example.ravindar.alpha;
 
-import android.content.Intent;
+import android.app.Activity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+
 import android.view.MenuItem;
-import android.widget.TextView;
 
 
-public class DisplayMessageActivity extends ActionBarActivity {
+public class MyFragActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.display_msg);
+        setContentView(R.layout.fragment_container_layout);
 
-        Intent intent = getIntent();
-        String inmsg = intent.getStringExtra(HomeActivity.EXTRA_MESSAGE);
+        FragmentManager fm = getFragmentManager();
+
+        DetailsFragment df = (DetailsFragment) fm.findFragmentById(R.id.details_container);
+
+        if (df == null) {
+            FragmentTransaction ft = fm.beginTransaction();
+            ft.add(R.id.details_container, new DetailsFragment());
+
+            ft.add(R.id.ui_container, new MyListFragment());
+
+            ft.commit();
 
 
-        TextView textView = (TextView) findViewById(R.id.displayTextView);
-//        textView.setTextAppearance(getApplicationContext(), R.style.base_text);
+        }
 
-        textView.setText(inmsg);
 
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

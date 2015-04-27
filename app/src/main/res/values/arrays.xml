@@ -1,0 +1,8 @@
+<resources>
+    <string-array name="todoItems">
+        <item>Get Coffee</item>
+        <item>Drop Kids</item>
+        <item>Call Client</item>
+        <item>Workout</item>
+    </string-array>
+</resources>
