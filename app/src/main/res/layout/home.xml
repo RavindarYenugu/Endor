@@ -6,22 +6,20 @@
 
     android:orientation="vertical">
 
-    <EditText
-        android:inputType="text"
-        android:id="@+id/myEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="@style/MyLargeText.Fancy"
-
-
-        android:hint="@string/edit_msg" />
-
-    <ListView
-        android:id="@+id/myListView"
+    <fragment
+        android:id="@+id/newTodoItem"
+        android:name="com.example.ravindar.alpha.NewTodoItemFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    </ListView>
+    </fragment>
 
+    <fragment
+        android:id="@+id/todoListFragment"
+        android:name="com.example.ravindar.alpha.TodoListFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </fragment>
 
 </LinearLayout>

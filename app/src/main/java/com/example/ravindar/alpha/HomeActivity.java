@@ -1,21 +1,19 @@
 package com.example.ravindar.alpha;
 
 import android.app.Activity;
+import android.net.Uri;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 
-public class HomeActivity extends Activity {
+public class HomeActivity extends Activity implements TodoListFragment.OnFragmentInteractionListener, NewTodoItemFragment.OnFragmentInteractionListener {
+    private ArrayAdapter<String> aa;
+    private ArrayList<String> todoItems;
 
     //protected static final String EXTRA_MESSAGE = "com.example.ravindar.alpha.msg";
 
@@ -24,6 +22,7 @@ public class HomeActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
 
+/*
         final EditText ed = (EditText) findViewById(R.id.myEditText);
         final ListView lv = (ListView) findViewById(R.id.myListView);
 
@@ -46,6 +45,7 @@ public class HomeActivity extends Activity {
                 return false;
             }
         });
+*/
 
 
     }
@@ -78,6 +78,16 @@ public class HomeActivity extends Activity {
 
         }
 
+
+    }
+
+    @Override
+    public void onFragmentInteraction(String id) {
+
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
 
     }
 
