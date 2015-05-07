@@ -2,17 +2,18 @@ package com.example.ravindar.alpha;
 
 import android.app.Activity;
 import android.app.Fragment;
-import android.net.Uri;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link NewTodoItemFragment.OnFragmentInteractionListener} interface
+ * {@link com.example.ravindar.alpha.NewTodoItemFragment.OnAddNewItemListener} interface
  * to handle interaction events.
  * Use the {@link NewTodoItemFragment#newInstance} factory method to
  * create an instance of this fragment.
@@ -27,7 +28,7 @@ public class NewTodoItemFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private OnFragmentInteractionListener mListener;
+    private OnAddNewItemListener mListener;
 
     /**
      * Use this factory method to create a new instance of
@@ -64,13 +65,33 @@ public class NewTodoItemFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.new_todo_item_fragment, container, false);
+        View view = inflater.inflate(R.layout.new_todo_item_fragment, container, false);
+
+
+        final EditText ed = (EditText) view.findViewById(R.id.myEditText);
+        ed.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN)
+                    if ((keyCode == KeyEvent.KEYCODE_DPAD_CENTER) ||
+                            (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                        String newItem = ed.getText().toString();
+                        mListener.onNewItemAdded(newItem);
+                        ed.setText("");
+                        return true;
+                    }
+
+                return false;
+            }
+        });
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
+
+    public void onButtonPressed(String s) {
         if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+            mListener.onNewItemAdded(s);
         }
     }
 
@@ -78,12 +99,14 @@ public class NewTodoItemFragment extends Fragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
-            mListener = (OnFragmentInteractionListener) activity;
+            mListener = (OnAddNewItemListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
                     + " must implement OnFragmentInteractionListener");
         }
     }
+
+
 
     @Override
     public void onDetach() {
@@ -101,9 +124,11 @@ public class NewTodoItemFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        public void onFragmentInteraction(Uri uri);
+
+
+    public interface OnAddNewItemListener {
+        public void onNewItemAdded(String newItem);
+
     }
 
 }

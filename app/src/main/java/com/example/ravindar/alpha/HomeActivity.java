@@ -1,19 +1,23 @@
 package com.example.ravindar.alpha;
 
 import android.app.Activity;
-import android.net.Uri;
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
-public class HomeActivity extends Activity implements TodoListFragment.OnFragmentInteractionListener, NewTodoItemFragment.OnFragmentInteractionListener {
+public class HomeActivity extends Activity implements TodoListFragment.OnFragmentInteractionListener, NewTodoItemFragment.OnAddNewItemListener {
     private ArrayAdapter<String> aa;
     private ArrayList<String> todoItems;
+
 
     //protected static final String EXTRA_MESSAGE = "com.example.ravindar.alpha.msg";
 
@@ -21,6 +25,23 @@ public class HomeActivity extends Activity implements TodoListFragment.OnFragmen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
+
+        final ArrayList<String> data = new ArrayList<>(Arrays.asList(this.getResources().getStringArray(R.array.todoItems)));
+
+        todoItems = data;
+
+
+        FragmentManager fm = getFragmentManager();
+        NewTodoItemFragment newTodoItemFragment = (NewTodoItemFragment) fm.findFragmentById(R.id.newTodoItem);
+        TodoListFragment todoListFragment = (TodoListFragment) fm.findFragmentById(R.id.todoListFragment);
+        AbsListView absListView = todoListFragment.getmListView();
+        ListAdapter listAdapter = todoListFragment.getmAdapter();
+
+
+
+
+
+
 
 /*
         final EditText ed = (EditText) findViewById(R.id.myEditText);
@@ -30,22 +51,7 @@ public class HomeActivity extends Activity implements TodoListFragment.OnFragmen
         final ArrayAdapter<String> aa = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, data);
         lv.setAdapter(aa);
 
-        ed.setOnKeyListener(new EditText.OnKeyListener() {
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if (event.getAction() == KeyEvent.ACTION_DOWN)
-                    if ((keyCode == KeyEvent.KEYCODE_DPAD_CENTER) ||
-                            (keyCode == KeyEvent.KEYCODE_ENTER)) {
-                        data.add(ed.getText().toString());
-                        aa.notifyDataSetChanged();
-                        ed.setText("");
-
-
-                        return true;
-                    }
-                return false;
-            }
-        });
-*/
+        */
 
 
     }
@@ -84,21 +90,20 @@ public class HomeActivity extends Activity implements TodoListFragment.OnFragmen
     @Override
     public void onFragmentInteraction(String id) {
 
+        Toast toast = Toast.makeText(this, "In Home:" + id, Toast.LENGTH_SHORT);
+        toast.show();
+
+
     }
+
 
     @Override
-    public void onFragmentInteraction(Uri uri) {
+    public void onNewItemAdded(String newItem) {
+
+        todoItems.add(newItem);
+        aa.notifyDataSetChanged();
 
     }
 
-/*    public void sendMessage(View view) {
-        EditText editText = (EditText) findViewById(R.id.myEditText);
-        String msg = editText.getText().toString();
 
-        Intent intent = new Intent(this, MyFragActivity.class);
-        intent.putExtra(EXTRA_MESSAGE, msg);
-        startActivity(intent);
-
-
-    }*/
 }

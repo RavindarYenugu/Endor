@@ -93,6 +93,10 @@ public class TodoListFragment extends Fragment implements AbsListView.OnItemClic
         return view;
     }
 
+    public ListAdapter getmAdapter() {
+        return mAdapter;
+    }
+
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -102,6 +106,10 @@ public class TodoListFragment extends Fragment implements AbsListView.OnItemClic
             throw new ClassCastException(activity.toString()
                     + " must implement OnFragmentInteractionListener");
         }
+    }
+
+    public AbsListView getmListView() {
+        return mListView;
     }
 
     @Override
