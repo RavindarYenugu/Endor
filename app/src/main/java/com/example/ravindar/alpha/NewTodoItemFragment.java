@@ -69,7 +69,7 @@ public class NewTodoItemFragment extends Fragment {
 
 
         final EditText ed = (EditText) view.findViewById(R.id.myEditText);
-        ed.setOnKeyListener(new View.OnKeyListener() {
+        ed.setOnKeyListener(new EditText.OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (event.getAction() == KeyEvent.ACTION_DOWN)
                     if ((keyCode == KeyEvent.KEYCODE_DPAD_CENTER) ||
@@ -105,7 +105,6 @@ public class NewTodoItemFragment extends Fragment {
                     + " must implement OnFragmentInteractionListener");
         }
     }
-
 
 
     @Override

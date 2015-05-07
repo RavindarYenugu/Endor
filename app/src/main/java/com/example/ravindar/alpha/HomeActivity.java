@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.Toast;
 
@@ -35,7 +36,7 @@ public class HomeActivity extends Activity implements TodoListFragment.OnFragmen
         NewTodoItemFragment newTodoItemFragment = (NewTodoItemFragment) fm.findFragmentById(R.id.newTodoItem);
         TodoListFragment todoListFragment = (TodoListFragment) fm.findFragmentById(R.id.todoListFragment);
         AbsListView absListView = todoListFragment.getmListView();
-        ListAdapter listAdapter = todoListFragment.getmAdapter();
+
 
 
 
@@ -101,7 +102,13 @@ public class HomeActivity extends Activity implements TodoListFragment.OnFragmen
     public void onNewItemAdded(String newItem) {
 
         todoItems.add(newItem);
-        aa.notifyDataSetChanged();
+        FragmentManager fm = getFragmentManager();
+
+        TodoListFragment todoListFragment = (TodoListFragment) fm.findFragmentById(R.id.todoListFragment);
+        AbsListView absListView = todoListFragment.getmListView();
+        ListAdapter listAdapter = todoListFragment.getmAdapter();
+        ((BaseAdapter) absListView.getAdapter()).notifyDataSetChanged();
+
 
     }
 
