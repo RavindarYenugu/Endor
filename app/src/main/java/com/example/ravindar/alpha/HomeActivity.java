@@ -27,7 +27,7 @@ public class HomeActivity extends Activity implements TodoListFragment.OnFragmen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
 
-        final ArrayList<String> data = new ArrayList<>(Arrays.asList(this.getResources().getStringArray(R.array.todoItems)));
+        ArrayList<String> data = new ArrayList<>(Arrays.asList(this.getResources().getStringArray(R.array.todoItems)));
 
         todoItems = data;
 
@@ -97,6 +97,10 @@ public class HomeActivity extends Activity implements TodoListFragment.OnFragmen
 
     }
 
+    public ArrayList<String> getData() {
+        return todoItems;
+    }
+
 
     @Override
     public void onNewItemAdded(String newItem) {
@@ -106,8 +110,10 @@ public class HomeActivity extends Activity implements TodoListFragment.OnFragmen
 
         TodoListFragment todoListFragment = (TodoListFragment) fm.findFragmentById(R.id.todoListFragment);
         AbsListView absListView = todoListFragment.getmListView();
-        ListAdapter listAdapter = todoListFragment.getmAdapter();
-        ((BaseAdapter) absListView.getAdapter()).notifyDataSetChanged();
+
+        BaseAdapter lp = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getData());
+        absListView.setAdapter(lp);
+        lp.notifyDataSetChanged();
 
 
     }

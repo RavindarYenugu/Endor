@@ -14,6 +14,9 @@ import android.widget.TextView;
 
 import com.example.ravindar.alpha.dummy.DummyContent;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
  * A fragment representing a list of Items.
  * <p/>
@@ -74,8 +77,10 @@ public class TodoListFragment extends Fragment implements AbsListView.OnItemClic
         }
 
         // TODO: Change Adapter to display your content
-        mAdapter = new ArrayAdapter<DummyContent.DummyItem>(getActivity(),
-                android.R.layout.simple_list_item_1, android.R.id.text1, DummyContent.ITEMS);
+
+
+        mAdapter = new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_list_item_1, new ArrayList<>(Arrays.asList(this.getResources().getStringArray(R.array.todoItems))));
     }
 
     @Override
@@ -83,9 +88,9 @@ public class TodoListFragment extends Fragment implements AbsListView.OnItemClic
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_todoitem, container, false);
 
-        // Set the adapter
         mListView = (AbsListView) view.findViewById(android.R.id.list);
-        ((AdapterView<ListAdapter>) mListView).setAdapter(mAdapter);
+        ((AdapterView<ListAdapter>) mListView).setAdapter(mAdapter);  // Set the adapter
+
 
         // Set OnItemClickListener so we can be notified on item clicks
         mListView.setOnItemClickListener(this);
