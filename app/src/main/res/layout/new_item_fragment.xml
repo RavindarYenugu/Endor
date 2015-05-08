@@ -1,7 +1,20 @@
-<?xml version="1.0" encoding="utf-8"?>
-<EditText xmlns:android="http://schemas.android.com/apk/res/android"
+<!--
+<include xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/myEditText"
+    layout="@layout/clearable_edit_text"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:contentDescription="@string/addItemContentDescription"
-    android:inputType="text" />
+    android:layout_height="wrap_content" />
+-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/myEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/addItemContentDescription"
+        android:inputType="text" />
+</LinearLayout>
+

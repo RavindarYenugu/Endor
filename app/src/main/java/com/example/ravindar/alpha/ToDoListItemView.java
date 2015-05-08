@@ -38,7 +38,7 @@ public class ToDoListItemView extends TextView {
         marginPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         marginPaint.setColor(myResources.getColor(R.color.Black));
         linePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        linePaint.setColor(myResources.getColor(R.color.BlueViolet));
+        linePaint.setColor(myResources.getColor(R.color.Wheat));
 
         // Get the paper background color and the margin width.
         paperColor = myResources.getColor(R.color.AliceBlue);

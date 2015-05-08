@@ -26,8 +26,8 @@ public class HomeActivity extends Activity implements NewItemFragment.OnNewItemA
         todoItems = new ArrayList<ToDoItem>();
 
         // Create the array adapter to bind the array to the ListView
-        int resID = R.layout.todolist_item;
-        aa = new ToDoItemAdapter(this, resID, todoItems);
+
+        aa = new ToDoItemAdapter(this, R.layout.todolist_item, todoItems);
 
         // Bind the array adapter to the ListView.
         todoListFragment.setListAdapter(aa);
