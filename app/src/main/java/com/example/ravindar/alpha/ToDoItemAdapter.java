@@ -11,6 +11,7 @@ import android.widget.TextView;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class ToDoItemAdapter extends ArrayAdapter<ToDoItem> {
 
@@ -31,7 +32,7 @@ public class ToDoItemAdapter extends ArrayAdapter<ToDoItem> {
 
         String taskString = item.getTask();
         Date createdDate = item.getCreated();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
         String dateString = sdf.format(createdDate);
 
         if (convertView == null) {

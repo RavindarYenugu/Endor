@@ -2,7 +2,12 @@ package com.example.ravindar.alpha;
 
 import android.app.Activity;
 import android.app.FragmentManager;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.BatteryManager;
 import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -35,6 +40,21 @@ public class HomeActivity extends Activity implements NewItemFragment.OnNewItemA
 
     public void onNewItemAdded(String newItem) {
         ToDoItem newTodoItem = new ToDoItem(newItem);
+
+        IntentFilter batIntentFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+        Intent battery = this.registerReceiver(null, batIntentFilter);
+        int status = 0;
+        if (battery != null) {
+            status = battery.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
+        }
+        boolean isCharging =
+                status == BatteryManager.BATTERY_STATUS_CHARGING ||
+                        status == BatteryManager.BATTERY_STATUS_FULL;
+
+
+        LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(this);
+
+        Toast.makeText(this, String.valueOf(isCharging), Toast.LENGTH_LONG).show();
         todoItems.add(0, newTodoItem);
         aa.notifyDataSetChanged();
     }

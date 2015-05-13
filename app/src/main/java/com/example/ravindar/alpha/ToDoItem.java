@@ -2,6 +2,7 @@ package com.example.ravindar.alpha;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class ToDoItem {
 
@@ -27,7 +28,7 @@ public class ToDoItem {
 
     @Override
     public String toString() {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
         String dateString = sdf.format(created);
         return "(" + dateString + ") " + task;
     }

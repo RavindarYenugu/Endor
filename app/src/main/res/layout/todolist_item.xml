@@ -18,7 +18,7 @@
         android:id="@+id/row"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_toLeftOf="@+id/rowDate"
+        android:layout_toLeftOf="@id/rowDate"
         android:fadingEdge="vertical"
         android:padding="10dp"
         android:scrollbars="vertical"
