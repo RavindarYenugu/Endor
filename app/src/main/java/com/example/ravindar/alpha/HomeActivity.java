@@ -7,12 +7,12 @@ import android.content.IntentFilter;
 import android.os.BatteryManager;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 
 public class HomeActivity extends Activity implements NewItemFragment.OnNewItemAddedListener {
+
     private ArrayList<ToDoItem> todoItems;
     private ToDoItemAdapter aa;
 
@@ -54,8 +54,10 @@ public class HomeActivity extends Activity implements NewItemFragment.OnNewItemA
 
         LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(this);
 
-        Toast.makeText(this, String.valueOf(isCharging), Toast.LENGTH_LONG).show();
+
         todoItems.add(0, newTodoItem);
         aa.notifyDataSetChanged();
+
+
     }
 }
